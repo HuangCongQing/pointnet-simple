@@ -1,8 +1,8 @@
 import torch
 import os
 import json
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
+from torch.utils.data import Dataset # 官方
+from torch.utils.data import DataLoader # 官方
 import numpy as np
 
 
@@ -25,9 +25,9 @@ def read_file_names_from_file(file):
   return files
 
 
-class PointNetDataset(Dataset):
+class PointNetDataset(Dataset): # 父类Dataset
   def __init__(self, root_dir, train):
-    super(PointNetDataset, self).__init__()
+    super(PointNetDataset, self).__init__() # 执行父类的构造函数，使得我们能够调用父类的属性。
 
     self._train = train
     self._classes = []
@@ -83,19 +83,19 @@ class PointNetDataset(Dataset):
       # print(np_pts.shape) # (10000, 3)
       self._features.append(np_pts)
       self._labels.append(kind)
-    if self._train == 0:
-      print("There are " + str(len(self._labels)) + " trian files.")
-    elif self._train == 1:
+    if self._train == 0: # 训练集
+      print("There are " + str(len(self._labels)) + " trian files.") # There are 9843 trian files.
+    elif self._train == 1: # 测试集
       print("There are " + str(len(self._labels)) + " test files.")
       
 
 if __name__ == "__main__":
-  train_data = PointNetDataset("./dataset/modelnet40_normal_resampled", train=0)
-  train_loader = DataLoader(train_data, batch_size=2, shuffle=True)
+  train_data = PointNetDataset("/home/hcq/data/modelnet40/modelnet40_normal_resampled", train=0) #txt文件 
+  train_loader = DataLoader(train_data, batch_size=2, shuffle=True) # 官方DataLoader
   cnt = 0
-  for pts, label in train_loader:
-    # print(pts.shape)
-    print(label.shape)
+  for pts, label in train_loader: #  batch_size=2  循环2次
+    print("pts.shape", pts.shape) # torch.Size([2, 3, 10000])
+    print("label.shape", label.shape) # torch.Size([2, 40])
     cnt += 1
     if cnt > 3:
       break

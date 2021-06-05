@@ -3,7 +3,7 @@
 pointnet简易实现，入门学习分享
 
 1. 环境配置：pytorch，Ubuntu18.04
-2. 任务：**只针对modelnet40分类**
+2. 任务：**只针对modelnet40(txt类型文件)分类**
 
 
 ## Reference

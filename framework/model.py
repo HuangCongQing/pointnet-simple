@@ -5,9 +5,9 @@ import torch
 import pretty_errors
 
 
-class PointNet(nn.Module):
+class PointNet(nn.Module):  # 父类nn.Module
   def __init__(self):
-    super(PointNet, self).__init__()
+    super(PointNet, self).__init__() # 
     self.conv1 = nn.Conv1d(3, 64, 1)
     self.conv2 = nn.Conv1d(64, 128, 1)
     self.conv3 = nn.Conv1d(128, 1024, 1)
