@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # 加载数据
     print("Loading train dataset...")
     train_data = PointNetDataset("/home/hcq/data/modelnet40/modelnet40_normal_resampled", train=0)
-    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True) # batch_size = 32
     print("Loading valid dataset...")
     val_data = PointNetDataset("/home/hcq/data/modelnet40/modelnet40_normal_resampled/", train=1)
     val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=True)
@@ -105,11 +105,11 @@ if __name__ == "__main__":
     best_acc = 0.0
     model.train() # 训练train
     print("Start trainning...")
-    for epoch in range(epochs):
+    for epoch in range(epochs): # 100
       acc_loss = 0.0
       num_samples = 0
       start_tic = time.time()
-      for x, y in train_loader: # 遍历数据
+      for x, y in train_loader: # 遍历数据(每次train_loader不一样？)
         x = x.to(device)
         y = y.to(device)
 

@@ -4,7 +4,7 @@ Author: HCQ
 Company(School): UCAS
 Email: 1756260160@qq.com
 Date: 2021-06-05 11:19:36
-LastEditTime: 2021-06-06 21:06:53
+LastEditTime: 2021-06-06 21:13:29
 FilePath: /pointnet-simple/framework/dataset.py
 '''
 import torch
@@ -112,7 +112,7 @@ if __name__ == "__main__":
   train_loader = DataLoader(train_data, batch_size=2, shuffle=True) # 官方DataLoader  4922
   cnt = 0
   print(" len(train_loader:", len(train_loader))# 4922
-  for pts, label in train_loader: #  batch_size=2  循环2次
+  for pts, label in train_loader: #  batch_size=2  循环2次 Iteration=样本数/batch_size
     print("pts.shape", pts.shape) # torch.Size([2, 3, 10000])
     print("label.shape", label.shape) # torch.Size([2, 40])
     cnt += 1
