@@ -4,7 +4,7 @@ Author: HCQ
 Company(School): UCAS
 Email: 1756260160@qq.com
 Date: 2021-06-05 11:19:36
-LastEditTime: 2021-06-06 20:16:35
+LastEditTime: 2021-06-06 20:25:47
 FilePath: /pointnet-simple/framework/dataset.py
 '''
 import torch
@@ -108,8 +108,8 @@ class PointNetDataset(Dataset): # 继承父类Dataset
       
 
 if __name__ == "__main__":
-  train_data = PointNetDataset("/home/hcq/data/modelnet40/modelnet40_normal_resampled", train=0) #txt文件 
-  train_loader = DataLoader(train_data, batch_size=2, shuffle=True) # 官方DataLoader
+  train_data = PointNetDataset("/home/hcq/data/modelnet40/modelnet40_normal_resampled", train=0) #txt文件   9843
+  train_loader = DataLoader(train_data, batch_size=2, shuffle=True) # 官方DataLoader  4922
   cnt = 0
   for pts, label in train_loader: #  batch_size=2  循环2次
     print("pts.shape", pts.shape) # torch.Size([2, 3, 10000])

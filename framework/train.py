@@ -42,7 +42,7 @@ def load_ckp(ckp_path, model, optimizer):
   optimizer.load_state_dict(state['optimizer'])
   print("model load from %s" % ckp_path)
 
-
+# forward函数输出的预测结果还需要经过softmax操作才能用于计算loss。
 def softXEnt(prediction, real_class):
     # TODO: return loss here
 
