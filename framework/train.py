@@ -109,7 +109,7 @@ if __name__ == "__main__":
       acc_loss = 0.0
       num_samples = 0
       start_tic = time.time()
-      for x, y in train_loader: # 遍历数据(每次train_loader不一样？)
+      for x, y in train_loader: # 遍历数据(每次train_loader不一样？)===========================================================
         x = x.to(device)
         y = y.to(device)
 
