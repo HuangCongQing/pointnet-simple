@@ -105,11 +105,11 @@ if __name__ == "__main__":
     best_acc = 0.0
     model.train() # 训练train
     print("Start trainning...")
-    for epoch in range(epochs): # 100
+    for epoch in range(epochs): # 100============================================
       acc_loss = 0.0
       num_samples = 0
       start_tic = time.time()
-      for x, y in train_loader: # 遍历数据(每次train_loader不一样？)===========================================================
+      for x, y in train_loader: #  Iteration=样本数/batch_size 遍历数据(每次train_loader不一样？)===========================================================
         x = x.to(device)
         y = y.to(device)
 
@@ -117,6 +117,7 @@ if __name__ == "__main__":
         optimizer.zero_grad()
 
         # TODO: put x into network and get out
+        print("x.shape", x.shape) # torch.Size([32, 3, 10000])
         out = model(x) # 模型输入
 
         loss = softXEnt(out, y) # 计算损失
