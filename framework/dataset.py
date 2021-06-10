@@ -4,7 +4,7 @@ Author: HCQ
 Company(School): UCAS
 Email: 1756260160@qq.com
 Date: 2021-06-05 11:19:36
-LastEditTime: 2021-06-10 10:38:35
+LastEditTime: 2021-06-10 10:39:16
 FilePath: /pointnet-simple/framework/dataset.py
 '''
 import torch
@@ -68,7 +68,7 @@ class PointNetDataset(Dataset): # 继承父类Dataset
 
     # jitter
     feature += np.random.normal(0, 0.02, size=feature.shape) # np.random.normal(loc=0.0均值, scale=1.0标准差, size=None)
-    # 转置
+    # 转置 方便后面一维卷积=================================
     feature = torch.Tensor(feature.T) # 转置10000x3变为3x10000============================
     
     # label需要从数字变成一个one hot的向量
