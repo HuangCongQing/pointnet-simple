@@ -11,7 +11,7 @@ from dataset import PointNetDataset
 from model import PointNet
 
 SEED = 13
-batch_size = 32
+batch_size = 8 # 原始32根据内存设置小一点
 epochs = 100
 decay_lr_factor = 0.95
 decay_lr_every = 2
@@ -109,7 +109,7 @@ if __name__ == "__main__":
       acc_loss = 0.0
       num_samples = 0
       start_tic = time.time()
-      for x, y in train_loader: #  Iteration=样本数/batch_size 遍历数据(每次train_loader不一样？)===========================================================
+      for x, y in train_loader:      #  Iteration=样本数/batch_size 遍历数据(每次train_loader不一样？)===========================================================
         x = x.to(device)
         y = y.to(device)
 
@@ -118,18 +118,17 @@ if __name__ == "__main__":
 
         # TODO: put x into network and get out
         print("x.shape", x.shape) # torch.Size([32, 3, 10000])
-        out = model(x) # 模型输入
+        out = model(x) # 1 模型输入,求解y
 
-        loss = softXEnt(out, y) # 计算损失
+        loss = softXEnt(out, y) # 2 计算损失
         
-        # TODO: loss backward
         acc = np.sum(np.argmax(out.cpu().detach().numpy(), axis=1) == np.argmax(y.cpu().detach().numpy(), axis=1)) / len(y)
 
-        # TODO: update network's param
-        loss.backward()
+        loss.backward() # 3 loss backward
         
         acc_loss += batch_size * loss.item()
         num_samples += y.shape[0]
+        optimizer.step() # 4 update network's param
         global_step += 1
         acc = np.sum(np.argmax(out.cpu().detach().numpy(), axis=1) == np.argmax(y.cpu().detach().numpy(), axis=1)) / len(y)
         # print('acc: ', acc)
